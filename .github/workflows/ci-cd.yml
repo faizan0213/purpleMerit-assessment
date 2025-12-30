@@ -1,0 +1,64 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install Backend Dependencies
+      run: cd backend && npm install
+    
+    - name: Run Backend Tests
+      run: cd backend && npm test
+      env:
+        MONGO_URI: ${{ secrets.MONGO_URI }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
+  frontend-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install Frontend Dependencies
+      run: cd frontend && npm install
+    
+    - name: Run Frontend Tests
+      run: cd frontend && npm test
+    
+    - name: Build Frontend
+      run: cd frontend && npm run build
+      env:
+        VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
+
+  deploy:
+    needs: [backend-tests, frontend-tests]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy Backend to Render
+      run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_BACKEND }}
+    
+    - name: Deploy Frontend to Vercel
+      run: curl -X POST ${{ secrets.VERCEL_DEPLOY_HOOK }}
