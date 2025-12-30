@@ -18,8 +18,11 @@ jobs:
       with:
         node-version: '18'
     
+    - name: Clean Backend Dependencies
+      run: cd backend && rm -rf node_modules package-lock.json
+    
     - name: Install Backend Dependencies
-      run: cd backend && npm install --force
+      run: cd backend && npm install
     
     - name: Run Backend Tests
       run: cd backend && npm test
@@ -38,8 +41,11 @@ jobs:
       with:
         node-version: '18'
     
+    - name: Clean Frontend Dependencies
+      run: cd frontend && rm -rf node_modules package-lock.json
+    
     - name: Install Frontend Dependencies
-      run: cd frontend && npm install --force
+      run: cd frontend && npm install
     
     - name: Run Frontend Tests
       run: cd frontend && npm test

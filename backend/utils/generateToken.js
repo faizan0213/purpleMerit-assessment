@@ -7,4 +7,3 @@ module.exports = (user) => {
     { expiresIn: process.env.JWT_EXPIRES_IN }
   );
 };
-//
