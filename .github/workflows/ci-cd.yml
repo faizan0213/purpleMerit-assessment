@@ -19,7 +19,7 @@ jobs:
         node-version: '18'
     
     - name: Install Backend Dependencies
-      run: cd backend && npm install
+      run: cd backend && npm install --force
     
     - name: Run Backend Tests
       run: cd backend && npm test
@@ -39,7 +39,7 @@ jobs:
         node-version: '18'
     
     - name: Install Frontend Dependencies
-      run: cd frontend && npm install
+      run: cd frontend && npm install --force
     
     - name: Run Frontend Tests
       run: cd frontend && npm test
