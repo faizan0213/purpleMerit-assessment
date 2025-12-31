@@ -51,6 +51,17 @@ NODE_ENV=development
 2. Get connection string
 3. Add to `.env` as `MONGO_URI`
 
+## API Documentation
+
+**Swagger UI:** `http://localhost:5000/api-docs`
+
+Access interactive API documentation at http://localhost:5000/api-docs when running locally.
+
+### Files
+- `swagger.yaml` - OpenAPI 3.0 specification in YAML format
+- `swagger.json` - OpenAPI 3.0 specification in JSON format
+- `API_DOCUMENTATION.json` - Postman collection format
+
 ## API Endpoints
 
 **Base URL:** `http://localhost:5000/api`

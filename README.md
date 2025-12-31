@@ -92,9 +92,16 @@ For production, use: `VITE_API_BASE_URL=https://purplemerit-assessment-oq7t.onre
 - Responsive design  
 - 26+ unit tests
 
-## API Endpoints
+## API Endpoints & Documentation
 
 **Base URL:** `https://purplemerit-assessment-oq7t.onrender.com/api`
+
+**Swagger UI (Local):** `http://localhost:5000/api-docs`
+
+### API Files
+- `backend/swagger.yaml` - OpenAPI 3.0 specification (YAML)
+- `backend/swagger.json` - OpenAPI 3.0 specification (JSON)
+- `backend/API_DOCUMENTATION.json` - Postman collection
 
 See `backend/README.md` for detailed API documentation.
 
